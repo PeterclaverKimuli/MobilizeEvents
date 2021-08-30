@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+	<h3>Events, Petitions, and Volunteer Opportunities</h3>
+	<div class="row row-cols-3 row-cols-md-3 g-4">	
+	  {%for post in posts.data%}
+	  	<div class="col">
+	    	<div class="card h-100">
+    	  	  <img src="{{post.featured_image_url}}" class = "card-img-top" alt="Text">		
+		      <div class="card-body">
+			        <h6 class="card-title">{{ post.title }}</h6>
+			        <p class="card-text text-muted small">Hosted by {{ post.sponsor.name }}</p>
+			        {% if post.is_virtual == true %}
+			        	<p class="card-text text-muted small">Virtual.</p>
+			        {% else %}
+			        	<p class="card-text text-muted small">{{post.location.venue}}, {{post.location.address_lines[0]}}, {{post.location.locality}}, {{post.location.region}} {{post.location.postal_code}}.</p>
+			        {% endif %}
+			  </div>
+			  <div class="card-footer">
+		          <div class="d-grid gap-2 ">
+				  	<a href="#" class="btn btn-primary text-align" type="button">See details</a>
+				  </div>	
+			  </div>
+		  	</div>
+	  	</div>
+	  {% endfor %}
+	</div>
+{% endblock content %}
+
+
